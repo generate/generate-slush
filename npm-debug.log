@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/doowb/.nvm/v5.1.1/bin/node',
+1 verbose cli   '/Users/doowb/.nvm/v5.1.1/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'mocha' ]
+2 info using npm@3.7.5
+3 info using node@v5.1.1
+4 verbose config Skipping project config: /Users/doowb/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly rollbackFailedOptional Starting
+9 silly rollbackFailedOptional Finishing
+10 silly runTopLevelLifecycles Starting
+11 silly runTopLevelLifecycles Finishing
+12 silly install printInstalled
+13 verbose stack Error: ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
+13 verbose stack     at Error (native)
+14 verbose cwd /Users/doowb/work/generate/generators/generate-slush
+15 error Darwin 13.4.0
+16 error argv "/Users/doowb/.nvm/v5.1.1/bin/node" "/Users/doowb/.nvm/v5.1.1/bin/npm" "install" "--save-dev" "mocha"
+17 error node v5.1.1
+18 error npm  v3.7.5
+19 error path /Users/doowb/node_modules/assemble
+20 error code ENOENT
+21 error errno -2
+22 error syscall stat
+23 error enoent ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
+24 error enoent ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
+24 error enoent This is most likely not a problem with npm itself
+24 error enoent and is related to npm not being able to find a file.
+25 verbose exit [ -2, true ]
