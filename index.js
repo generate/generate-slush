@@ -7,15 +7,4 @@
 
 'use strict';
 
-var debug = require('debug')('generate-slush');
-
-module.exports = function(config) {
-  return function(app) {
-    if (this.isRegistered('generate-slush')) return;
-
-    this.define('slush', function() {
-      debug('running slush');
-      
-    });
-  };
-};
+module.exports = require('./generator');
