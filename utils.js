@@ -10,8 +10,30 @@ require = utils;
  */
 
 require('global-modules', 'gm');
+require('is-valid-app', 'isValid');
 require('resolve-file', 'resolve');
 require = fn;
+
+utils.parseTasks = function(app) {
+  var res = {};
+  res.tasks = app.option('tasks') || [];
+  res.task = res.tasks[0];
+  res.args = res.tasks.length > 1 ? res.tasks.slice(1) : [];
+
+  if (!/^slush/.test(res.task)) {
+    return false;
+  }
+
+  var segs = res.task.split(':')[0].split('.');
+  var generator = segs[segs.length - 1];
+
+  if (!generator) {
+    return;
+  }
+
+  res.generator = generator;
+  return res;
+};
 
 utils.resolveModule = function(name) {
   return utils.resolve(name) ||

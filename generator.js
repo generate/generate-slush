@@ -3,27 +3,32 @@
 var utils = require('./utils');
 
 module.exports = function(app) {
-  var tasks = app.option('tasks');
-  var task = tasks[0];
-  var args = tasks.length > 1 ? tasks.slice(1) : [];
+  if (!utils.isValid(app, 'generate-slush')) return;
 
-  if (/^slush/.test(task)) {
-    var segs = task.split(':');
-    var generator = segs[0].split('.')[1];
-    var task = segs.length > 1 ? segs[1] : 'default';
+  app.task('slush', function(cb) {
+    console.log(`${app.name} => ${this.name}`);
+    cb()
+  });
 
-    if (!generator) {
-      throw new Error('Expected a slush generator to be specified.');
-    }
+  app.task('default', { silent: true }, ['slush']);
 
-    app.register(generator, function(sub) {
-      var moduleName = `slush-${generator}`;
-      var gulp = require(utils.gulpPath(moduleName));
+  // dynamically register sub generator and tasks
+  // based on which slush generator is trying to be run
+
+  var res = utils.parseTasks(app);
+  if (res) {
+    app.register(res.generator, function(sub) {
+      var moduleName = `slush-${res.generator}`;
+      var gulpPath = utils.gulpPath(moduleName);
+      if (!gulpPath) {
+        throw new Error('Unable to find a local gulp module');
+      }
+      var gulp = require(gulpPath);
       utils.tryRequire(moduleName, 'slushfile.js');
 
       var keys = Object.keys(gulp.tasks || gulp._registry.tasks() || {});
       keys.forEach(function(key) {
-        sub.task(key, utils.task(gulp, key, args));
+        sub.task(key, utils.task(gulp, key, res.args));
       });
 
       // slush generators are expected to handle additional
