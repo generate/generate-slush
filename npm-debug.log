@@ -1,33 +1,69 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/Users/doowb/.nvm/v5.1.1/bin/node',
 1 verbose cli   '/Users/doowb/.nvm/v5.1.1/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   '--save-dev',
-1 verbose cli   'mocha' ]
+1 verbose cli   'show',
+1 verbose cli   'nearest-path' ]
 2 info using npm@3.7.5
 3 info using node@v5.1.1
-4 verbose config Skipping project config: /Users/doowb/.npmrc. (matches userconfig)
-5 silly loadCurrentTree Starting
-6 silly install loadCurrentTree
-7 silly install readLocalPackageData
-8 silly rollbackFailedOptional Starting
-9 silly rollbackFailedOptional Finishing
-10 silly runTopLevelLifecycles Starting
-11 silly runTopLevelLifecycles Finishing
-12 silly install printInstalled
-13 verbose stack Error: ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
-13 verbose stack     at Error (native)
-14 verbose cwd /Users/doowb/work/generate/generators/generate-slush
-15 error Darwin 13.4.0
-16 error argv "/Users/doowb/.nvm/v5.1.1/bin/node" "/Users/doowb/.nvm/v5.1.1/bin/npm" "install" "--save-dev" "mocha"
-17 error node v5.1.1
-18 error npm  v3.7.5
-19 error path /Users/doowb/node_modules/assemble
-20 error code ENOENT
-21 error errno -2
-22 error syscall stat
-23 error enoent ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
-24 error enoent ENOENT: no such file or directory, stat '/Users/doowb/node_modules/assemble'
-24 error enoent This is most likely not a problem with npm itself
-24 error enoent and is related to npm not being able to find a file.
-25 verbose exit [ -2, true ]
+4 silly mapToRegistry name nearest-path
+5 silly mapToRegistry using default registry
+6 silly mapToRegistry registry https://registry.npmjs.org/
+7 silly mapToRegistry uri https://registry.npmjs.org/nearest-path
+8 verbose request uri https://registry.npmjs.org/nearest-path
+9 verbose request no auth needed
+10 info attempt registry request try #1 at 11:48:48 AM
+11 verbose request using bearer token for auth
+12 verbose request id 7832ec1ffb084677
+13 http request GET https://registry.npmjs.org/nearest-path
+14 http 404 https://registry.npmjs.org/nearest-path
+15 verbose headers { 'content-type': 'application/json',
+15 verbose headers   'cache-control': 'max-age=0',
+15 verbose headers   'content-length': '2',
+15 verbose headers   'accept-ranges': 'bytes',
+15 verbose headers   date: 'Wed, 08 Jun 2016 15:48:45 GMT',
+15 verbose headers   via: '1.1 varnish',
+15 verbose headers   connection: 'keep-alive',
+15 verbose headers   'x-served-by': 'cache-atl6230-ATL',
+15 verbose headers   'x-cache': 'MISS',
+15 verbose headers   'x-cache-hits': '0',
+15 verbose headers   'x-timer': 'S1465400925.648850,VS0,VE33',
+15 verbose headers   vary: 'Accept-Encoding' }
+16 silly get cb [ 404,
+16 silly get   { 'content-type': 'application/json',
+16 silly get     'cache-control': 'max-age=0',
+16 silly get     'content-length': '2',
+16 silly get     'accept-ranges': 'bytes',
+16 silly get     date: 'Wed, 08 Jun 2016 15:48:45 GMT',
+16 silly get     via: '1.1 varnish',
+16 silly get     connection: 'keep-alive',
+16 silly get     'x-served-by': 'cache-atl6230-ATL',
+16 silly get     'x-cache': 'MISS',
+16 silly get     'x-cache-hits': '0',
+16 silly get     'x-timer': 'S1465400925.648850,VS0,VE33',
+16 silly get     vary: 'Accept-Encoding' } ]
+17 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/nearest-path
+17 verbose stack     at makeError (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+17 verbose stack     at CachingRegistryClient.<anonymous> (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+17 verbose stack     at Request._callback (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+17 verbose stack     at Request.self.callback (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/request/request.js:199:22)
+17 verbose stack     at emitTwo (events.js:87:13)
+17 verbose stack     at Request.emit (events.js:172:7)
+17 verbose stack     at Request.<anonymous> (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/request/request.js:1036:10)
+17 verbose stack     at emitOne (events.js:82:20)
+17 verbose stack     at Request.emit (events.js:169:7)
+17 verbose stack     at IncomingMessage.<anonymous> (/Users/doowb/.nvm/v5.1.1/lib/node_modules/npm/node_modules/request/request.js:963:12)
+18 verbose statusCode 404
+19 verbose pkgid nearest-path
+20 verbose cwd /Users/doowb/work/generate/generators/generate-slush
+21 error Darwin 13.4.0
+22 error argv "/Users/doowb/.nvm/v5.1.1/bin/node" "/Users/doowb/.nvm/v5.1.1/bin/npm" "show" "nearest-path"
+23 error node v5.1.1
+24 error npm  v3.7.5
+25 error code E404
+26 error 404 Registry returned 404 for GET on https://registry.npmjs.org/nearest-path
+27 error 404
+28 error 404 'nearest-path' is not in the npm registry.
+29 error 404 You should bug the author to publish it (or use the name yourself!)
+30 error 404 Note that you can also install from a
+31 error 404 tarball, folder, http url, or git url.
+32 verbose exit [ 1, true ]
