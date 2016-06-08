@@ -1,28 +1,108 @@
 'use strict';
 
 require('mocha');
+var fs = require('fs');
+var path = require('path');
 var assert = require('assert');
-var slush = require('./');
+var generate = require('generate');
+var generator = require('./');
+var app;
+
+var cwd = path.resolve.bind(path, __dirname, 'actual');
 
 describe('generate-slush', function() {
-  it('should export a function', function() {
-    assert.equal(typeof slush, 'function');
+  beforeEach(function() {
+    app = generate({silent: true});
+    app.cwd = cwd();
+    app.option('dest', cwd());
   });
 
-  it('should export an object', function() {
-    assert(slush);
-    assert.equal(typeof slush, 'object');
-  });
-
-  it('should throw an error when invalid args are passed', function(cb) {
-    try {
-      slush();
-      cb(new Error('expected an error'));
-    } catch (err) {
-      assert(err);
-      assert.equal(err.message, 'expected first argument to be a string');
-      assert.equal(err.message, 'expected callback to be a function');
+  describe('plugin', function() {
+    it('should only register the plugin once', function(cb) {
+      var count = 0;
+      app.on('plugin', function(name) {
+        if (name === 'generate-slush') {
+          count++;
+        }
+      });
+      app.use(generator);
+      app.use(generator);
+      app.use(generator);
+      assert.equal(count, 1);
       cb();
-    }
+    });
+  });
+
+  describe('plugin', function() {
+    it('should work as a plugin', function() {
+      app.use(generator);
+      assert(app.tasks.hasOwnProperty('default'));
+      assert(app.tasks.hasOwnProperty('slush'));
+    });
+
+    it('should run the `slush` task', function(cb) {
+      app.use(generator);
+      app.generate('slush', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+
+    it('should run the `default` task', function(cb) {
+      app.use(generator);
+      app.generate('default', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+
+    it.skip('should run the `slush-foo` generator', function(cb) {
+      app.use(generator);
+      app.option('tasks', ['slush.foo']);
+      app.generate('slush.foo', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+  });
+
+  describe('generator', function() {
+    it('should work as a generator', function(cb) {
+      app.register('slush', generator);
+      app.generate('slush', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+
+    it('should run the `default` task', function(cb) {
+      app.register('slush', generator);
+      app.generate('slush:default', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+  });
+
+  describe('sub-generator', function() {
+    it('should work as a sub-generator', function(cb) {
+      app.register('foo', function(foo) {
+        foo.register('slush', generator);
+      });
+      app.generate('foo.slush', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
+
+    it('should run the `default` task', function(cb) {
+      app.register('foo', function(foo) {
+        foo.register('slush', generator);
+      });
+      app.generate('foo.slush:default', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
   });
 });
