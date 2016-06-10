@@ -29,10 +29,9 @@
     "resolve-file": "^0.2.0"
   },
   "devDependencies": {
-    "delete": "^0.3.2",
-    "generate": "^0.7.0",
-    "gulp-format-md": "*",
-    "mocha": "*"
+    "generate": "^0.7.1",
+    "gulp-format-md": "^0.1.9",
+    "mocha": "^2.5.3"
   },
   "keywords": [
     "generate",
