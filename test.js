@@ -82,6 +82,15 @@ describe('generate-slush', function() {
         cb();
       });
     });
+
+    it.skip('should run the `angular` slush generator', function(cb) {
+      app.option('tasks', ['slush.angular']);
+      app.register('slush', generator);
+      app.generate('slush.angular', function(err) {
+        if (err) return cb(err);
+        cb();
+      });
+    });
   });
 
   describe('sub-generator', function() {
