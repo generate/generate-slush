@@ -11,27 +11,29 @@ require = utils;
 
 require('global-modules', 'gm');
 require('is-valid-app', 'isValid');
+require('log-utils', 'log');
 require('resolve-file', 'resolve');
 require = fn;
 
 utils.parseTasks = function(app) {
   var res = {};
   res.tasks = app.option('tasks') || [];
-  res.task = res.tasks[0];
-  res.args = res.tasks.length > 1 ? res.tasks.slice(1) : [];
+  res.generators = [];
 
-  if (!/^slush/.test(res.task)) {
-    return false;
-  }
+  res.tasks.forEach(function(task) {
+    if (task.indexOf('slush') === -1) {
+      return;
+    }
 
-  var segs = res.task.split(':')[0].split('.');
-  var generator = segs[segs.length - 1];
+    var segs = task.split(':')[0].split('.');
+    var generator = segs[segs.length - 1];
 
-  if (!generator) {
-    return;
-  }
+    if (!generator) {
+      return;
+    }
+    res.generators.push(generator);
+  });
 
-  res.generator = generator;
   return res;
 };
 
@@ -53,20 +55,35 @@ utils.tryRequire = function(name, file) {
   }
 };
 
-utils.task = function(gulp, key, args) {
+utils.task = function(gulp, key) {
   return function(cb) {
-    gulp.args = args;
     utils.run(gulp, key, cb);
   };
 };
 
 utils.run = function(gulp, key, cb) {
-  if (typeof gulp.start === 'function') {
-    gulp.start(key, cb);
-    return;
+  try {
+    if (typeof gulp.start === 'function') {
+      gulp.start(key, function(err) {
+        if (err) return handleError(err);
+        cb();
+      });
+      return;
+    }
+    gulp.series(key)(function(err) {
+      if (err) return handleError(err);
+      cb();
+    });
+  } catch (err) {
+    handleError(err);
   }
-  gulp.series(key)(cb);
 };
+
+function handleError(err) {
+  console.error();
+  console.error('ERROR running slush generator:', err);
+  console.error();
+}
 
 /**
  * Expose `utils` modules
