@@ -41,7 +41,7 @@
   ],
   "verb": {
     "toc": false,
-    "layout": "global",
+    "layout": "generator",
     "tasks": [
       "readme"
     ],
@@ -50,10 +50,16 @@
     ],
     "reflinks": [
       "generate",
-      "verb"
+      "verb",
+      "assemble",
+      "base",
+      "gulp"
     ],
     "lint": {
       "reflinks": true
+    },
+    "related": {
+      "list": []
     }
   }
 }

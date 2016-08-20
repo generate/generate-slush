@@ -1,14 +1,85 @@
-# generate-slush [![NPM version](https://img.shields.io/npm/v/generate-slush.svg?style=flat)](https://www.npmjs.com/package/generate-slush) [![NPM downloads](https://img.shields.io/npm/dm/generate-slush.svg?style=flat)](https://npmjs.org/package/generate-slush) [![Build Status](https://img.shields.io/travis/generate/generate-slush.svg?style=flat)](https://travis-ci.org/generate/generate-slush)
+<p align="center">
+
+<a href="https://github.com/generate/generate">
+<img height="150" width="150" src="https://raw.githubusercontent.com/generate/generate/master/docs/logo.png">
+</a>
+</p>
 
 Run slush generators with generate
 
-## Install
+# generate-slush
 
-Install globally with [npm](https://www.npmjs.com/)
+[![NPM version](https://img.shields.io/npm/v/generate-slush.svg?style=flat)](https://www.npmjs.com/package/generate-slush) [![NPM downloads](https://img.shields.io/npm/dm/generate-slush.svg?style=flat)](https://npmjs.org/package/generate-slush) [![Build Status](https://img.shields.io/travis/generate/generate-slush.svg?style=flat)](https://travis-ci.org/generate/generate-slush)
+
+![generate-slush demo](https://raw.githubusercontent.com/generate/generate-slush/master/docs/demo.gif)
+
+## What is "Generate"?
+
+Generate is a command line tool and developer framework for scaffolding out new GitHub projects using [generators](https://github.com/generate/generate/blob/master/docs/generators.md) and [tasks](https://github.com/generate/generate/blob/master/docs/tasks.md).
+
+Answers to prompts and the user's environment can be used to determine the templates, directories, files and contents to build. Support for [gulp](http://gulpjs.com), [base](https://github.com/node-base/base) and [assemble](https://github.com/assemble/assemble) plugins, and much more.
+
+**For more information**:
+
+* Visit the [generate project](https://github.com/generate/generate/)
+* Visit the [generate documentation](https://github.com/generate/generate/blob/master/docs/)
+* Find [generators on npm](https://www.npmjs.com/browse/keyword/generate-generator) (help us [author generators](https://github.com/generate/generate/blob/master/docs/micro-generators.md))
+
+## Getting started
+
+### Install
+
+**Installing the CLI**
+
+To run the `slush` generator from the command line, you'll need to install [Generate](https://github.com/generate/generate) globally first. You can do that now with the following command:
 
 ```sh
-$ npm install -g generate-slush
+$ npm install --global generate
 ```
+
+This adds the `gen` command to your system path, allowing it to be run from any directory.
+
+**Install generate-slush**
+
+Install this module with the following command:
+
+```sh
+$ npm install --global generate-slush
+```
+
+### Usage
+
+Run this generator's `default` [task](https://github.com/generate/generate/blob/master/docs/tasks.md#default) with the following command:
+
+```sh
+$ gen slush
+```
+
+**What you should see in the terminal**
+
+If completed successfully, you should see both `starting` and `finished` events in the terminal, like the following:
+
+```sh
+[00:44:21] starting ...
+...
+[00:44:22] finished ✔
+```
+
+If you do not see one or both of those events, please [let us know about it](../../issues).
+
+### Help
+
+To see a general help menu and available commands for Generate's CLI, run:
+
+```sh
+$ gen help
+```
+
+## Tasks
+
+All available tasks.
+
+Visit Generate's [documentation for tasks](https://github.com/generate/generate/blob/master/docs/tasks.md).
 
 ## Usage
 
@@ -29,25 +100,25 @@ $ gen slush.angular
 $ gen slush.express
 ```
 
-## Contributing
+## About
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/generate/generate-slush/issues/new).
+### Community
 
-## Building docs
+Are you using [Generate](https://github.com/generate/generate) in your project? Have you published a [generator](https://github.com/generate/generate/blob/master/docs/generators.md) and want to share your project with the world?
 
-Generate readme and API documentation with [verb](https://github.com/verbose/verb):
+Here are some suggestions!
 
-```sh
-$ npm install verb && npm run docs
-```
+* If you get like Generate and want to tweet about it, please feel free to mention `@generatejs` or use the `#generatejs` hashtag
+* Show your love by starring [Generate](https://github.com/generate/generate) and `generate-slush`
+* Get implementation help on [StackOverflow](http://stackoverflow.com/questions/tagged/generate) (please use the `generatejs` tag in questions)
+* **Gitter** Discuss Generate with us on [Gitter](https://gitter.im/generate/generate)
+* If you publish an generator, thank you! To make your project as discoverable as possible, please add the keyword `generategenerator` to package.json.
 
-Or, if [verb](https://github.com/verbose/verb) is installed globally:
+### Contributing
 
-```sh
-$ verb
-```
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
-## Running tests
+### Running tests
 
 Install dev dependencies:
 
@@ -55,18 +126,18 @@ Install dev dependencies:
 $ npm install -d && npm test
 ```
 
-## Author
+### Author
 
 **Brian Woodward**
 
 * [github/doowb](https://github.com/doowb)
 * [twitter/doowb](http://twitter.com/doowb)
 
-## License
+### License
 
 Copyright © 2016, [Brian Woodward](https://github.com/doowb).
 Released under the [MIT license](https://github.com/generate/generate-slush/blob/master/LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on June 10, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.30, on August 19, 2016._
