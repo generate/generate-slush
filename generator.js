@@ -64,8 +64,11 @@ module.exports = function(app) {
       var keys = Object.keys(gulp.tasks || gulp._registry.tasks() || {});
       keys.forEach(function(key) {
         sub.task(key, function(cb) {
-          // console.log(`${sub.name} => ${this.name}`);
-          utils.task(gulp, key)(cb);
+          var restore = utils.chdir(app.options.dest);
+          utils.task(gulp, key)(function(err) {
+            restore();
+            cb(err);
+          });
         });
       });
     });
