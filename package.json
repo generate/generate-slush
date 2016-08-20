@@ -22,17 +22,17 @@
     "test": "mocha"
   },
   "dependencies": {
-    "global-modules": "^0.2.2",
-    "is-valid-app": "^0.1.0",
+    "global-modules": "^0.2.3",
+    "is-valid-app": "^0.2.0",
     "lazy-cache": "^2.0.1",
-    "log-utils": "^0.1.4",
+    "log-utils": "^0.2.1",
     "mkdirp": "^0.5.1",
-    "resolve-file": "^0.2.0"
+    "resolve-file": "^0.2.1"
   },
   "devDependencies": {
-    "generate": "^0.7.1",
-    "gulp-format-md": "^0.1.9",
-    "mocha": "^2.5.3"
+    "generate": "^0.11.2",
+    "gulp-format-md": "^0.1.10",
+    "mocha": "^3.0.2"
   },
   "keywords": [
     "generate",
