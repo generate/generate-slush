@@ -13,6 +13,7 @@ require('global-modules', 'gm');
 require('is-valid-app', 'isValid');
 require('log-utils', 'log');
 require('resolve-file', 'resolve');
+require('mkdirp');
 require = fn;
 
 utils.parseTasks = function(app) {
@@ -77,6 +78,21 @@ utils.run = function(gulp, key, cb) {
   } catch (err) {
     handleError(err);
   }
+};
+
+utils.chdir = function(dir) {
+  var cwd;
+  if (dir) {
+    cwd = process.cwd();
+    utils.mkdirp.sync(dir);
+    process.chdir(dir);
+  }
+
+  return function() {
+    if (cwd) {
+      process.chdir(cwd);
+    }
+  };
 };
 
 function handleError(err) {
